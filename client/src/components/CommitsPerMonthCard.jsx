@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import Chart from 'chart.js';
 
-
 const CommitsPerMonthCard = ({ commitsPerMonth }) => {
 
-    const colors = ['#9ae9a8', '#40bd61', '#206e38', '#9ae9a8', '#40bd61', '#206e38', '#9ae9a8', '#40bd61', '#206e38', '#9ae9a8', '#40bd61', '#206e38']
 
     useEffect(() => {
         const perMonthValues = Object.values(commitsPerMonth);
@@ -15,7 +13,7 @@ const CommitsPerMonthCard = ({ commitsPerMonth }) => {
             labels: perMonthKeys,
             datasets: [{
                 data: perMonthValues,
-                backgroundColor: colors,
+                backgroundColor: '#40bd61',
             }]
         };
 

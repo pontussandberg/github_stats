@@ -3,8 +3,8 @@ const {
     getUserData,
     getNumOfRepos,
     getLanguageDist,
-    getTotalCommits,
-    getCommitsPerMonth,
+    getCommits,
+    validateUsername,
 } = require('./fetchers.js');
 
 const app = express();
@@ -31,8 +31,14 @@ app.get('/api/languages/:username', (req, res) => {
 });
 
 app.get('/api/commits/:username', (req, res) => {
-    getTotalCommits(req.params.username)
+    getCommits(req.params.username)
         .then(data => res.json(data))
+        .catch(e => res.json({ error: true }));
+});
+
+app.get('/api/validate/:username', (req, res) => {
+    validateUsername(req.params.username)
+        .then(isValid => res.json(isValid))
         .catch(e => res.json({ error: true }));
 });
 

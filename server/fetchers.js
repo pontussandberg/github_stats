@@ -30,18 +30,16 @@ const getLanguageDist = username => fetch(`https://api.github.com/users/${userna
 
 
 
-const getTotalCommits = username => fetch(`https://api.github.com/users/${username}/repos`)
+const getCommits = username => fetch(`https://api.github.com/users/${username}/repos`)
     .then(response => response.json())
     .then(repos => Promise.all(repos.map(repo => fetch(repo.commits_url.replace('{/sha}', ''))
         .then(response => response.json()))))
     .then(unNestCommits);
 
 
-const getCommitsPerMonth = username => fetch(`https://api.github.com/users/${username}`)
-    .then(userData => userData.json())
-    .then(userData => deltaNowThen(userData.created_at))
-    .then(days => getTotalCommits(username).then(commits => commits / days))
-
+const validateUsername = username => fetch(`https://api.github.com/users/${username}`)
+    .then(response => response.json())
+    .then(result => result.id ? { isValid: true } : { isValid: false })
 
 
 
@@ -49,24 +47,6 @@ module.exports = {
     getUserData,
     getNumOfRepos,
     getLanguageDist,
-    getTotalCommits,
-    getCommitsPerMonth,
+    getCommits,
+    validateUsername,
 };
-
-
-
-
-
-const logger = (x) => { console.log(x); return x };
-
-// ### Need an error handler for when api limit has been reached ###
-const checkApiRate = err => null
-
-
-// ### Needs to be impelmented ###
-const isUser = obj => obj.message === 'Not Found';
-const testUnknown = () => {
-    fetch('https://api.github.com/users/pontussandberg1')
-        .then(response => response.json())
-        .then(console.log);
-}

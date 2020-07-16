@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Chart from 'chart.js';
-import chartShemaMOCK from '../languages-mock.json'
 import Legend from './Legend.jsx';
 
 const LanguageCard = ({ languagesMap }) => {

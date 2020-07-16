@@ -9,26 +9,31 @@ const App = () => {
   const [isForm, setIsForm] = useState(true);
   const [username, setUsername] = useState('');
 
-  const handleSubmit = value => {
-    fetch(`https://api.github.com/users/${value}`)
-      .then(user => user.json())
-      .then(user => {
-        if (user.id) {
-          setUsername(value);
-          setIsForm(false);
-        }
-        else {
-          setIsInvalid(true);
-          setTimeout(() => setIsInvalid(false), 1000);
-        }
-      })
+  const handleSubmit = value => fetch(`/api/validate/${value}`)
+    .then(response => response.json())
+    .then(obj => obj.isValid ? validInput(value) : invalidInput());
+
+
+  const validInput = username => {
+    setUsername(username);
+    setIsForm(false);
+  }
+
+  const invalidInput = () => {
+    setIsInvalid(true);
+    setTimeout(() => setIsInvalid(false), 1000);
+  }
+
+  const handleBack = () => {
+    setIsForm(true);
+    setUsername('');
   }
 
   if (isForm) return <Form isInvalid={isInvalid} onSubmit={handleSubmit} />
 
   return (
     <div className="App">
-      <Header username={username} />
+      <Header onBack={handleBack} username={username} />
       <Board username={username} />
     </div>
   );

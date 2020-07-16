@@ -16,17 +16,12 @@
   }
 
   .form__btn {
-    outline: none;
     height: 50px;
     width: 50px;
-    padding: 0;
-    margin: 0;
     background-color: #fff !important;
-    border: none;
     background: url('../media/add-btn.svg');
     background-repeat: no-repeat;
     background-position: center;
-    cursor: pointer;
   }
 
   .form__invalid {

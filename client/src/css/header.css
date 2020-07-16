@@ -1,0 +1,41 @@
+.header{
+    background-color: #fff;
+    padding-top: 2rem;
+}
+  
+.header__wrapper {
+  display: flex;
+  justify-content: center;
+}
+  
+.header__data {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+}
+  
+.header__follow {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+  
+.header__img {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  margin-bottom: -3rem;
+  border: 1px solid rgb(223, 222, 222);
+}
+
+.header__back-btn {
+  position: absolute;
+  top: .5rem;
+  left: 4rem;
+  width: 80px;
+  height: 70px;
+  background: url('../media/left-arrow.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

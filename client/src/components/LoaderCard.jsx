@@ -3,7 +3,7 @@ import React from 'react';
 const LoaderCard = () => {
     return (
         <div className="card loader">
-            <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         </div>
     );
 }
