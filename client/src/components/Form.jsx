@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Form = ({ onSubmit }) => {
+const Form = ({ onSubmit, isInvalid }) => {
 
     const getValue = (e) => {
         e.preventDefault();
@@ -9,9 +9,11 @@ const Form = ({ onSubmit }) => {
     }
 
     return (
-        <form className="container form">
-            <input id="username-input" type="text" placeholder="Github username" />
-            <button onClick={getValue}></button>
+        <form autocomplete="off" className="container form">
+            <div className={isInvalid ? 'form__invalid form__input-wrapper' : 'form__input-wrapper'}>
+                <input autocomplete="off" className="form__input" id="username-input" type="text" placeholder="Github username" />
+                <button className="form__btn" onClick={getValue}></button>
+            </div>
         </form>
     );
 }

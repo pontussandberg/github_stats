@@ -21,12 +21,10 @@ const unNestCommits = arr => {
     arr.forEach(x => {
         result.count += x.length;
         x.forEach(y => {
-            console.log('Y: ======>>> ', y);
             const monthNr = (parseInt(y.commit.author.date.slice(5, 7)) - 1);
             result.perMonth[months[monthNr]] += 1;
         });
     });
-    console.log('AFTER: ', result);
     return result;
 }
 

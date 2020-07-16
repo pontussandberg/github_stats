@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './css/form.css';
+import './css/card.css';
+import './css/loader.css'
 import './css/index.css';
 import App from './App';
 

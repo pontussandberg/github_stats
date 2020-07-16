@@ -1,0 +1,39 @@
+.form {
+    background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(0, #003073), color-stop(100%, #029797));
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .form__input {
+    height: 50px;
+    width: 290px;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    background-color: #fff !important;
+  }
+
+  .form__btn {
+    outline: none;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    margin: 0;
+    background-color: #fff !important;
+    border: none;
+    background: url('../media/add-btn.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+
+  .form__invalid {
+    border: 2px solid rgb(238, 56, 56);
+  }
+
+  .form__input-wrapper {
+    margin-bottom: 7rem;
+    display: flex;
+  }

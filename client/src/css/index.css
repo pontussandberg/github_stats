@@ -6,55 +6,11 @@
 
 body {
   font-family: sans-serif, Arial, Helvetica;
-  /* background-color: #F7F7F7; */
   background-color: #f7f7f7;
 }
 
 .container {
   padding: 0 10%;
-}
-
-.card {
-  flex-basis: 35%;
-  min-width: 400px;
-  max-width: 34%;
-  margin: 1rem;
-  height: 280px;
-  padding-top: 1.2rem;
-  display: flex;
-  flex-flow: column;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-  background: url('../media/bg.svg');
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-color: #fff;
-}
-
-.card__label {
-  font-style: italic;
-  color: #404040;
-  text-align: center;
-  display: block;
-}
-
-.card__data-wrapper {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-}
-
-.chart-container-doughnut {
-  height: 200px;
-  width: 200px;
-}
-
-
-
-.card__data {
-  font-size: 60px;
-  margin-bottom: 2rem;
 }
 
 
@@ -140,13 +96,6 @@ body {
     flex-basis: 100%;
     min-width: unset;
     max-width: unset;
-    margin: 1rem;
-    height: 280px;
-    padding: 1rem 0;
-    display: flex;
-    flex-flow: column;
-    background: #fff;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   }
   
 
