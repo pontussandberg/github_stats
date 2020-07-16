@@ -7,40 +7,38 @@ const CommitsPerMonthCard = ({ commitsPerMonth }) => {
     const colors = ['#9ae9a8', '#40bd61', '#206e38', '#9ae9a8', '#40bd61', '#206e38', '#9ae9a8', '#40bd61', '#206e38', '#9ae9a8', '#40bd61', '#206e38']
 
     useEffect(() => {
-        if (commitsPerMonth) {
-            const perMonthValues = Object.values(commitsPerMonth);
-            const perMonthKeys = Object.keys(commitsPerMonth);
-            const ctx = document.getElementById("commits-chart").getContext('2d');
+        const perMonthValues = Object.values(commitsPerMonth);
+        const perMonthKeys = Object.keys(commitsPerMonth);
+        const ctx = document.getElementById("commits-chart").getContext('2d');
 
-            const data = {
-                labels: perMonthKeys,
-                datasets: [{
-                    data: perMonthValues,
-                    backgroundColor: colors,
+        const data = {
+            labels: perMonthKeys,
+            datasets: [{
+                data: perMonthValues,
+                backgroundColor: colors,
+            }]
+        };
+
+        const options = {
+            legend: {
+                display: false,
+            },
+            scaleShowValues: true,
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        autoSkip: false
+                    }
                 }]
-            };
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+        };
 
-            const options = {
-                legend: {
-                    display: false,
-                },
-                scaleShowValues: true,
-                scales: {
-                    xAxes: [{
-                        ticks: {
-                            autoSkip: false
-                        }
-                    }]
-                },
-                responsive: true,
-                maintainAspectRatio: false,
-            };
-
-            Chart.Bar(ctx, {
-                data,
-                options,
-            });
-        }
+        Chart.Bar(ctx, {
+            data,
+            options,
+        });
     }, [commitsPerMonth])
 
     return (

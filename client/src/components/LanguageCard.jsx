@@ -3,48 +3,33 @@ import Chart from 'chart.js';
 import chartShemaMOCK from '../languages-mock.json'
 import Legend from './Legend.jsx';
 
-const LanguageCard = ({ username }) => {
-
-    const [chartSchema, setChartSchema] = useState({});
-
-
+const LanguageCard = ({ languagesMap }) => {
 
     useEffect(() => {
-        if (chartSchema.languages) {
-            const ctx = document.getElementById("languages-chart").getContext('2d');
+        const ctx = document.getElementById("languages-chart").getContext('2d');
 
-            const data = {
-                labels: chartSchema.labels,
-                datasets: [{
-                    data: chartSchema.languages,
-                    backgroundColor: chartSchema.colors,
-                }]
-            };
-            const options = {
-                // legend: 'right',
-                legend: {
-                    display: false,
-                },
-                responsive: true,
-                maintainAspectRatio: false,
-            };
+        const data = {
+            labels: languagesMap.labels,
+            datasets: [{
+                data: languagesMap.languages,
+                backgroundColor: languagesMap.colors,
+            }]
+        };
+        const options = {
+            // legend: 'right',
+            legend: {
+                display: false,
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+        };
 
-            Chart.Doughnut(ctx, {
-                data,
-                options,
-            });
-        }
-    }, [chartSchema])
+        Chart.Doughnut(ctx, {
+            data,
+            options,
+        });
 
-    useEffect(() => {
-        fetch(`/api/languages/${username}`)
-            .then(data => data.json())
-            .then(data => setChartSchema(data))
-            .catch(console.error);
-    }, [username])
-
-
-
+    }, [languagesMap])
 
     return (
         <div className="card">
@@ -55,7 +40,7 @@ const LanguageCard = ({ username }) => {
                 </div>
 
                 <div className="legend">
-                    <Legend chartSchema={chartSchema} />
+                    <Legend languagesMap={languagesMap} />
                 </div>
 
             </div>

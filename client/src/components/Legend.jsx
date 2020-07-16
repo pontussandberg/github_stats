@@ -1,17 +1,18 @@
 import React from 'react';
 
-const Legend = ({ chartSchema }) => {
+const Legend = ({ languagesMap }) => {
+    console.log(languagesMap);
 
-    const generateItems = () => chartSchema.labels.map((x, i) => (
+    const generateItems = () => languagesMap.labels.map((x, i) => (
         <div className="legend__item" key={i}>
-            <div className="legend__color" style={{ background: chartSchema.colors[i] }}></div>
+            <div className="legend__color" style={{ background: languagesMap.colors[i] }}></div>
             <div className="legend__label">{x}</div>
         </div>
     ));
 
 
 
-    if (chartSchema.labels) {
+    if (languagesMap.labels) {
         return generateItems()
     }
     return null;

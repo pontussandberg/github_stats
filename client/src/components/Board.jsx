@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import DataCard from './DataCard.jsx';
 import LanguageCard from './LanguageCard.jsx';
 import CommitsPerMonthCard from './CommitsPerMonthCard.jsx';
+import LoaderCard from './LoaderCard.jsx';
 
 const perMonthMOCK = {
     "count": 97,
@@ -24,9 +25,10 @@ const perMonthMOCK = {
 
 
 const Board = ({ username }) => {
-    const [repos, setRepos] = useState(0);
-    const [commits, setCommits] = useState(0);
+    const [repos, setRepos] = useState(null);
+    const [commits, setCommits] = useState(null);
     const [commitsPerMonth, setCommitsPerMonth] = useState(null);
+    const [languagesMap, setLanguagesMap] = useState(null);
 
     useEffect(() => {
         fetch(`/api/repos/${username}`)
@@ -41,14 +43,20 @@ const Board = ({ username }) => {
                 setCommitsPerMonth(data.perMonth);
             })
             .catch(console.error);
+
+        fetch(`/api/languages/${username}`)
+            .then(data => data.json())
+            .then(data => setLanguagesMap(data))
+            .catch(console.error);
+
     }, [username])
 
     return (
         <div className="board container">
-            <DataCard label="Public repos" data={repos} />
-            <LanguageCard username={username} />
-            <DataCard label="Total commits to owned repos" data={commits} />
-            <CommitsPerMonthCard commitsPerMonth={commitsPerMonth} />
+            {repos ? <DataCard label="Public repos" data={repos} /> : <LoaderCard />}
+            {languagesMap ? <LanguageCard languagesMap={languagesMap} /> : <LoaderCard />}
+            {commits ? <DataCard label="Total commits to owned repos" data={commits} /> : <LoaderCard />}
+            {commitsPerMonth ? <CommitsPerMonthCard commitsPerMonth={commitsPerMonth} /> : <LoaderCard />}
         </div>
     );
 }
