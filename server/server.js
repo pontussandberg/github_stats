@@ -1,6 +1,11 @@
-const fetch = require('node-fetch');
 const express = require('express');
-const utils = require('./utils.js');
+const {
+    getUserData,
+    getNumOfRepos,
+    getLanguageDist,
+    getTotalCommits,
+    getCommitsPerMonth,
+} = require('./fetchers.js');
 
 const app = express();
 const port = 5050;
@@ -8,8 +13,31 @@ const port = 5050;
 
 
 app.get('/api/user-data/:username', (req, res) => {
-    getUser(req.params.username);
+    getUserData(req.params.username)
+        .then(data => res.json(data))
+        .catch(e => res.json({ error: true }));
 });
+
+app.get('/api/repos/:username', (req, res) => {
+    getNumOfRepos(req.params.username)
+        .then(data => res.json(data))
+        .catch(e => res.json({ error: true }));
+});
+
+app.get('/api/languages/:username', (req, res) => {
+    getLanguageDist(req.params.username)
+        .then(data => res.json(data))
+        .catch(e => res.json({ error: true }));
+});
+
+app.get('/api/commits/:username', (req, res) => {
+    getTotalCommits(req.params.username)
+        .then(data => res.json(data))
+        .catch(e => res.json({ error: true }));
+});
+
+
+const logger = data => { console.log(data); return data; }
 
 
 app.listen(port);
