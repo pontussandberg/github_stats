@@ -10,7 +10,7 @@ const merger = arr => {
     return obj;
 };
 
-const unNestCommits = arr => {
+const formatCommits = arr => {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
     const result = {
         count: 0,
@@ -27,23 +27,6 @@ const unNestCommits = arr => {
     });
     return result;
 }
-
-const deltaNowThen = dateStr => {
-    let result = '';
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
-    const s = dateStr.replace(/T.+/, '').replace(/-/g, '');
-
-    result += s.slice(6, 8) + ' ';
-    result += months[s.slice(4, 6)] + ' ';
-    result += s.slice(0, 4) + ' ';
-    result += '00:00:00 GMT'
-
-    const msDelta = Date.now() - Date.parse(result);
-    const daysDelta = Math.floor(msDelta / (60 * 60 * 24 * 1000));
-    return daysDelta;
-}
-
-
 
 const createColorSchema = (languages, colors) => {
     let other = false;
@@ -87,7 +70,6 @@ const createLabelSchema = (languages, colors) => {
     return filtered;
 }
 
-
 const createChartSchema = languages => {
     colors = {
         JavaScript: '#F1E25A',
@@ -111,7 +93,6 @@ const createChartSchema = languages => {
 
 module.exports = {
     merger,
-    unNestCommits,
-    deltaNowThen,
+    formatCommits,
     createChartSchema,
 };

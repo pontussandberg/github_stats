@@ -1,8 +1,7 @@
 const fetch = require('node-fetch');
 const {
     merger,
-    unNestCommits,
-    deltaNowThen,
+    formatCommits,
     createChartSchema,
 } = require('./utils.js');
 
@@ -34,7 +33,7 @@ const getCommits = username => fetch(`https://api.github.com/users/${username}/r
     .then(response => response.json())
     .then(repos => Promise.all(repos.map(repo => fetch(repo.commits_url.replace('{/sha}', ''))
         .then(response => response.json()))))
-    .then(unNestCommits);
+    .then(formatCommits);
 
 
 const validateUsername = username => fetch(`https://api.github.com/users/${username}`)

@@ -32,7 +32,7 @@ const LanguageCard = ({ languagesMap }) => {
 
     return (
         <div className="card">
-            <span className="card__label">Language distrubution</span>
+            <span className="card__label">Language distribution</span>
             <div className="card__data-wrapper">
                 <div className="card__chart-container-doughnut">
                     <canvas className="card__canvas" id="languages-chart" ></canvas>
